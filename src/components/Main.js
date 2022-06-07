@@ -8,17 +8,12 @@ const Main = ({ showSearchPage }) => {
   let [read, setRead] = useState([]);
 
   useEffect(() => {
-    console.log("here");
-
     const fetchBooks = async () => {
       const res = await getAll();
-      console.log("res", res);
-
       sortBooks(res);
     };
 
     const sortBooks = (booksList) => {
-      console.log("booksList", booksList);
       setRead(booksList.filter((book) => book.shelf === "read"));
       setWantToRead(booksList.filter((book) => book.shelf === "wantToRead"));
       setCurrentlyReading(
@@ -42,7 +37,7 @@ const Main = ({ showSearchPage }) => {
         </div>
       </div>
       <div className="open-search">
-        <a onClick={() => showSearchPage()}>Add a book</a>
+        <button onClick={() => showSearchPage()}>Add a book</button>
       </div>
     </div>
   );

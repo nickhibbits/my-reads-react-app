@@ -2,9 +2,9 @@ const Search = ({ showSearchPage }) => {
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <a className="close-search" onClick={() => showSearchPage()}>
+        <button className="close-search" onClick={() => showSearchPage()}>
           Close
-        </a>
+        </button>
         <div className="search-books-input-wrapper">
           <input type="text" placeholder="Search by title, author, or ISBN" />
         </div>

@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import Book from "./Book";
 
 const Bookshelf = ({ title, books }) => {
-  console.log("books", books);
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{title}</h2>
