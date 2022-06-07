@@ -1,6 +1,15 @@
 import PropTypes from "prop-types";
+import { update } from "../utils/BooksAPI";
 
 const Book = ({ book }) => {
+  // console.log("bookShelf", book.shelf);
+
+  function updateShelf(bookShelfOption) {
+    console.log("bookShelfOption", bookShelfOption);
+
+    update(book, bookShelfOption);
+  }
+
   return (
     <div className="book">
       <div className="book-top">
@@ -13,7 +22,7 @@ const Book = ({ book }) => {
           }}
         ></div>
         <div className="book-shelf-changer">
-          <select>
+          <select onChange={(e) => updateShelf(e.target.value)}>
             <option value="none" disabled>
               Move to...
             </option>

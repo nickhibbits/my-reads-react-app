@@ -22,7 +22,7 @@ const Main = ({ showSearchPage }) => {
     };
 
     fetchBooks();
-  }, []);
+  }, [read, wantToRead, currentlyReading]);
 
   return (
     <div className="list-books">
