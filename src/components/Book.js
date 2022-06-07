@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
 import { update } from "../utils/BooksAPI";
 
-const Book = ({ book }) => {
+const Book = ({ book, onShelfUpdate }) => {
   // console.log("bookShelf", book.shelf);
 
   function updateShelf(bookShelfOption) {
-    console.log("bookShelfOption", bookShelfOption);
-
     update(book, bookShelfOption);
+    onShelfUpdate();
   }
 
   return (

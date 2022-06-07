@@ -6,23 +6,36 @@ const Main = ({ showSearchPage }) => {
   let [currentlyReading, setCurrentlyReading] = useState([]);
   let [wantToRead, setWantToRead] = useState([]);
   let [read, setRead] = useState([]);
+  let [shelfChanged, setShelfChanged] = useState(true);
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      const res = await getAll();
-      sortBooks(res);
-    };
+    let _shelfChanged = true;
+    if (_shelfChanged) {
+      console.log("fetching books");
+      const fetchBooks = async () => {
+        const res = await getAll();
+        sortBooks(res);
+      };
 
-    const sortBooks = (booksList) => {
-      setRead(booksList.filter((book) => book.shelf === "read"));
-      setWantToRead(booksList.filter((book) => book.shelf === "wantToRead"));
-      setCurrentlyReading(
-        booksList.filter((book) => book.shelf === "currentlyReading")
-      );
-    };
+      const sortBooks = (booksList) => {
+        setRead(booksList.filter((book) => book.shelf === "read"));
+        setWantToRead(booksList.filter((book) => book.shelf === "wantToRead"));
+        setCurrentlyReading(
+          booksList.filter((book) => book.shelf === "currentlyReading")
+        );
+      };
 
-    fetchBooks();
-  }, [read, wantToRead, currentlyReading]);
+      fetchBooks();
+    }
+
+    return () => {
+      _shelfChanged = false;
+    };
+  }, [shelfChanged]);
+
+  function updateShelf() {
+    setShelfChanged(!shelfChanged);
+  }
 
   return (
     <div className="list-books">
@@ -31,9 +44,17 @@ const Main = ({ showSearchPage }) => {
       </div>
       <div className="list-books-content">
         <div>
-          <Bookshelf title={"Currently Reading"} books={currentlyReading} />
-          <Bookshelf title={"Want to Read"} books={wantToRead} />
-          <Bookshelf title={"Read"} books={read} />
+          <Bookshelf
+            title={"Currently Reading"}
+            books={currentlyReading}
+            shelfUpdate={updateShelf}
+          />
+          <Bookshelf
+            title={"Want to Read"}
+            books={wantToRead}
+            shelfUpdate={updateShelf}
+          />
+          <Bookshelf title={"Read"} books={read} shelfUpdate={updateShelf} />
         </div>
       </div>
       <div className="open-search">
