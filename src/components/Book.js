@@ -9,7 +9,7 @@ const Book = ({ book }) => {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: book.bookCoverURL,
+            backgroundImage: `url(${book.imageLinks.thumbnail})`,
           }}
         ></div>
         <div className="book-shelf-changer">
@@ -24,8 +24,8 @@ const Book = ({ book }) => {
           </select>
         </div>
       </div>
-      <div className="book-title">{book.bookTitle}</div>
-      <div className="book-authors">{book.bookAuthor}</div>
+      <div className="book-title">{book.title}</div>
+      <div className="book-authors">{book.authors}</div>
     </div>
   );
 };
