@@ -8,34 +8,31 @@ const Search = () => {
   let [books, setBooks] = useState([]);
 
   useEffect(() => {
-    console.log("query change", query);
-
     const getBooks = async () => {
       const res = await search(query, 20);
       setBooks(res);
-      console.log("books", books);
     };
 
     getBooks();
   }, [query]);
 
   const updateQuery = async (_query) => {
-    return setQuery(_query.trim());
+    return setQuery(_query);
   };
 
   function onShelfUpdate() {
-    console.log("here");
+    return;
   }
 
   const matchingBooks = () => {
     if (query === "") {
       return [];
     } else if (query !== "" && !books) {
-      console.log(" query populated, no books");
+      return [];
+    } else if (books.error) {
       return [];
     } else {
-      console.log("books", books);
-      return books;
+      return books.filter((book) => book.imageLinks);
     }
   };
 
@@ -58,7 +55,7 @@ const Search = () => {
         <ol className="books-grid">
           {matchingBooks().map((book) => {
             return (
-              <li key={book.title}>
+              <li key={book.id}>
                 <Book book={book} onShelfUpdate={onShelfUpdate} />
               </li>
             );
