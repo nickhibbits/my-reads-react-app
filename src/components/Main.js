@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getAll } from "../utils/BooksAPI";
 import Bookshelf from "./Bookshelf";
 
-const Main = ({ showSearchPage }) => {
+const Main = () => {
   let [currentlyReading, setCurrentlyReading] = useState([]);
   let [wantToRead, setWantToRead] = useState([]);
   let [read, setRead] = useState([]);
@@ -58,7 +59,7 @@ const Main = ({ showSearchPage }) => {
         </div>
       </div>
       <div className="open-search">
-        <button onClick={() => showSearchPage()}>Add a book</button>
+        <Link to="/search">Add a book</Link>
       </div>
     </div>
   );
