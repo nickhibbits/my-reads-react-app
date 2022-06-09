@@ -9,15 +9,15 @@ const Search = () => {
   let [books, setBooks] = useState([]);
   let [myBooks, setMyBooks] = useState([]);
 
+  const fetchBooks = async () => {
+    const res = await getAll();
+    setMyBooks(res);
+  };
+
   useEffect(() => {
     const queryBooks = async () => {
       const res = await search(query, 20);
       setBooks(res);
-    };
-
-    const fetchBooks = async () => {
-      const res = await getAll();
-      setMyBooks(res);
     };
 
     fetchBooks();
@@ -29,6 +29,7 @@ const Search = () => {
   };
 
   function onShelfUpdate() {
+    fetchBooks();
     return;
   }
 
