@@ -12,7 +12,7 @@ function Bookshelf({ title, books, shelfUpdate }) {
         <ol className="books-grid">
           {books.map((book) => {
             return (
-              <li key={book.title}>
+              <li key={book.id}>
                 <Book book={book} onShelfUpdate={onShelfUpdate} />
               </li>
             );

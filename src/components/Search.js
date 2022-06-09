@@ -45,7 +45,7 @@ function Search() {
     } else {
       books.forEach((book) => {
         myBooks.forEach((myBook) => {
-          if (myBook.title === book.title) {
+          if (myBook.id === book.id) {
             book.shelf = myBook.shelf;
           }
         });
