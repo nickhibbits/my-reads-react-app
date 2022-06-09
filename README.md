@@ -12,14 +12,14 @@ This app leverages React to manage state and side effects. The user is given imm
 
 This is the first project counted towards the completion of the the Udacity React Nanodegree.
 
-### Getting Started
+## Getting Started
 
-After cloning the repo
+After cloning the repo...
 
-`npm i` to install the dependencies<br>
-`npm start` to spin up the React dev server
+`npm i` to install the dependencies.<br>
+`npm start` to spin up the React dev server.
 
-navigate to `localhost:3000` to view the app
+Navigate to `localhost:3000` to view the app.
 
 ## Backend Server
 
