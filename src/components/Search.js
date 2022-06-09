@@ -7,6 +7,7 @@ import Book from "./Book";
 const Search = () => {
   let [query, setQuery] = useState("");
   let [books, setBooks] = useState([]);
+  let [myBooks, setMyBooks] = useState([]);
 
   useEffect(() => {
     const queryBooks = async () => {
@@ -14,6 +15,12 @@ const Search = () => {
       setBooks(res);
     };
 
+    const fetchBooks = async () => {
+      const res = await getAll();
+      setMyBooks(res);
+    };
+
+    fetchBooks();
     queryBooks();
   }, [query]);
 
@@ -33,22 +40,11 @@ const Search = () => {
     } else if (books.error) {
       return [];
     } else {
-      const fetchBooks = async () => {
-        const myBooks = await getAll();
-        return myBooks;
-      };
-
-      fetchBooks().then((myBooks) => {
-        console.log("myBooks", myBooks);
-        books.forEach((book, i) => {
-          myBooks.forEach((myBook, i) => {
-            if (myBook.title === book.title) {
-              console.log("titles match");
-              console.log("myBook", myBook);
-              book.shelf = myBook.shelf;
-              console.log("book", book);
-            }
-          });
+      books.forEach((book) => {
+        myBooks.forEach((myBook) => {
+          if (myBook.title === book.title) {
+            book.shelf = myBook.shelf;
+          }
         });
       });
 
