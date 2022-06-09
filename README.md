@@ -8,7 +8,7 @@ This application allows users to manage the books they're reading. Users are giv
 
 This app leverages React to manage state and side effects. The user is given immediate feedback when performing actions inside the app, and relevant data persists across different pages. All together this provides a more streamlined and engaging UX.
 
-This is the first project counted towards the completion of the the Udacity React Nanodegree.
+This is the first project counted towards the completion of the Udacity React Nanodegree.
 
 ## Getting Started
 
