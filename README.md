@@ -23,7 +23,7 @@ Navigate to `localhost:3000` to view the app.
 
 ## Backend Server
 
-Udacity provided a backend server for me to develop against. The methods (found in `src/utils/Bookshelf.js`) are as follows:
+A backend server to fetch books was provided by Udacity. The methods (found in `src/utils/Bookshelf.js`) are as follows:
 
 - [`getAll`](#getall)
 - [`update`](#update)
