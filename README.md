@@ -1,4 +1,4 @@
-### My Reads React App
+# My Reads React App
 
 ## Overview
 
@@ -8,15 +8,15 @@ This application allows users to manage the books they're reading. Users are giv
 - Want to Read
 - Read
 
-This app leverages React to manage state and side effects. The user is given immediate feedback when performing actions inside the app, and relevant data persists across different pages. All culminating to provide a more streamlined and engaging UX.
+This app leverages React to manage state and side effects. The user is given immediate feedback when performing actions inside the app, and relevant data persists across different pages. All together this provides a more streamlined and engaging UX.
 
-This is the first project counting towards the completion of the the Udacity React Nanodegree
+This is the first project counted towards the completion of the the Udacity React Nanodegree.
 
-## Getting Started
+# Getting Started
 
 After cloning the repo
 
-`npm i` to install the dependencies, then
+`npm i` to install the dependencies, then<br>
 `npm start` to spin up the React dev server
 
 navigate to localhost:3000 to view the app!
