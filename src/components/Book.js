@@ -7,6 +7,8 @@ const Book = ({ book, onShelfUpdate }) => {
     onShelfUpdate();
   }
 
+  console.log("book.shelf", book.shelf);
+
   return (
     <div className="book">
       <div className="book-top">

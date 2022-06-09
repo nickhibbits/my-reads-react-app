@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { search } from "../utils/BooksAPI";
+import { getAll } from "../utils/BooksAPI";
 import Book from "./Book";
 
 const Search = () => {
@@ -8,12 +9,12 @@ const Search = () => {
   let [books, setBooks] = useState([]);
 
   useEffect(() => {
-    const getBooks = async () => {
+    const queryBooks = async () => {
       const res = await search(query, 20);
       setBooks(res);
     };
 
-    getBooks();
+    queryBooks();
   }, [query]);
 
   const updateQuery = async (_query) => {
@@ -32,6 +33,27 @@ const Search = () => {
     } else if (books.error) {
       return [];
     } else {
+      const fetchBooks = async () => {
+        const myBooks = await getAll();
+        return myBooks;
+      };
+
+      fetchBooks().then((myBooks) => {
+        console.log("myBooks", myBooks);
+        books.forEach((book, i) => {
+          myBooks.forEach((myBook, i) => {
+            if (myBook.title === book.title) {
+              console.log("titles match");
+              console.log("myBook", myBook);
+              book.shelf = myBook.shelf;
+              console.log("book", book);
+            }
+          });
+        });
+      });
+
+      console.log("books", books);
+
       return books.filter((book) => book.imageLinks);
     }
   };
