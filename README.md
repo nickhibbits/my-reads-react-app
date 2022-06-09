@@ -1,7 +1,5 @@
 # My Reads React App
 
-## Overview
-
 This application allows users to manage the books they're reading. Users are given the means to search for new books and place them on one of three shelves:
 
 - Currently Reading
