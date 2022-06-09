@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Book from "./Book";
 
-const Bookshelf = ({ title, books, shelfUpdate }) => {
+function Bookshelf({ title, books, shelfUpdate }) {
   function onShelfUpdate() {
     shelfUpdate();
   }
@@ -21,7 +21,7 @@ const Bookshelf = ({ title, books, shelfUpdate }) => {
       </div>
     </div>
   );
-};
+}
 
 Bookshelf.propTypes = {
   books: PropTypes.array,

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getAll } from "../utils/BooksAPI";
 import Bookshelf from "./Bookshelf";
 
-const Main = () => {
+function Main() {
   let [currentlyReading, setCurrentlyReading] = useState([]);
   let [wantToRead, setWantToRead] = useState([]);
   let [read, setRead] = useState([]);
@@ -12,7 +12,6 @@ const Main = () => {
   useEffect(() => {
     let _shelfChanged = true;
     if (_shelfChanged) {
-      console.log("fetching books");
       const fetchBooks = async () => {
         const res = await getAll();
         sortBooks(res);
@@ -63,6 +62,6 @@ const Main = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Main;

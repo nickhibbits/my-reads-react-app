@@ -4,7 +4,7 @@ import { search } from "../utils/BooksAPI";
 import { getAll } from "../utils/BooksAPI";
 import Book from "./Book";
 
-const Search = () => {
+function Search() {
   let [query, setQuery] = useState("");
   let [books, setBooks] = useState([]);
   let [myBooks, setMyBooks] = useState([]);
@@ -20,18 +20,20 @@ const Search = () => {
       setBooks(res);
     };
 
-    fetchBooks();
-    queryBooks();
+    if (query.length !== 0) {
+      fetchBooks();
+      queryBooks();
+    }
   }, [query]);
 
   const updateQuery = async (_query) => {
     return setQuery(_query);
   };
 
-  function onShelfUpdate() {
+  const onShelfUpdate = () => {
     fetchBooks();
     return;
-  }
+  };
 
   const matchingBooks = () => {
     if (query === "") {
@@ -48,8 +50,6 @@ const Search = () => {
           }
         });
       });
-
-      console.log("books", books);
 
       return books.filter((book) => book.imageLinks);
     }
@@ -83,6 +83,6 @@ const Search = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Search;

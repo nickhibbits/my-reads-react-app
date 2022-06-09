@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
 import { update } from "../utils/BooksAPI";
 
-const Book = ({ book, onShelfUpdate }) => {
+function Book({ book, onShelfUpdate }) {
   function updateShelf(bookShelfOption) {
     update(book, bookShelfOption);
     onShelfUpdate();
   }
-
-  console.log("book.shelf", book.shelf);
 
   return (
     <div className="book">
@@ -39,7 +37,7 @@ const Book = ({ book, onShelfUpdate }) => {
       <div className="book-authors">{book.authors}</div>
     </div>
   );
-};
+}
 
 Book.propTypes = {
   book: PropTypes.shape({
