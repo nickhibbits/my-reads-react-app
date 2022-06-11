@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { search } from "../utils/BooksAPI";
-import { getAll } from "../utils/BooksAPI";
+import { getAll, update } from "../utils/BooksAPI";
 import Book from "./Book";
 
 function Search() {
@@ -30,7 +30,8 @@ function Search() {
     return setQuery(_query);
   };
 
-  const onShelfUpdate = () => {
+  const onShelfUpdate = (book, shelf) => {
+    update(book, shelf);
     fetchBooks();
     return;
   };
@@ -44,6 +45,7 @@ function Search() {
       return [];
     } else {
       books.forEach((book) => {
+        book.shelf = "none";
         myBooks.forEach((myBook) => {
           if (myBook.id === book.id) {
             book.shelf = myBook.shelf;

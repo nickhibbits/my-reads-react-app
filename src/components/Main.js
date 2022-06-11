@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAll } from "../utils/BooksAPI";
+import { getAll, update } from "../utils/BooksAPI";
 import Bookshelf from "./Bookshelf";
 
 function Main() {
@@ -9,22 +9,22 @@ function Main() {
   let [read, setRead] = useState([]);
   let [shelfChanged, setShelfChanged] = useState(true);
 
+  const fetchBooks = async () => {
+    const res = await getAll();
+    sortBooks(res);
+  };
+
+  const sortBooks = (booksList) => {
+    setRead(booksList.filter((book) => book.shelf === "read"));
+    setWantToRead(booksList.filter((book) => book.shelf === "wantToRead"));
+    setCurrentlyReading(
+      booksList.filter((book) => book.shelf === "currentlyReading")
+    );
+  };
+
   useEffect(() => {
     let _shelfChanged = true;
     if (_shelfChanged) {
-      const fetchBooks = async () => {
-        const res = await getAll();
-        sortBooks(res);
-      };
-
-      const sortBooks = (booksList) => {
-        setRead(booksList.filter((book) => book.shelf === "read"));
-        setWantToRead(booksList.filter((book) => book.shelf === "wantToRead"));
-        setCurrentlyReading(
-          booksList.filter((book) => book.shelf === "currentlyReading")
-        );
-      };
-
       fetchBooks();
     }
 
@@ -33,8 +33,13 @@ function Main() {
     };
   }, [shelfChanged]);
 
-  function updateShelf() {
-    setShelfChanged(!shelfChanged);
+  function updateShelf(book, shelf) {
+    book.shelf = shelf;
+    update(book, shelf).then(() => {
+      fetchBooks();
+    });
+
+    // setShelfChanged(!shelfChanged);
   }
 
   return (

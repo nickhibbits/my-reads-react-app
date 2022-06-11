@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import Book from "./Book";
 
 function Bookshelf({ title, books, shelfUpdate }) {
-  function onShelfUpdate() {
-    shelfUpdate();
+  function onShelfUpdate(book, shelf) {
+    shelfUpdate(book, shelf);
   }
   return (
     <div className="bookshelf">
